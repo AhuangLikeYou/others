@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.java.butterfly.system.dao.SysConfigInfoMapper">
+    <resultMap id="BaseResultMap" type="com.java.butterfly.system.entity.SysConfigInfo">
+        <id column="config_id" jdbcType="VARCHAR" property="configId"/>
+        <result column="config_type" jdbcType="VARCHAR" property="configType"/>
+        <result column="config_key" jdbcType="VARCHAR" property="configKey"/>
+        <result column="config_value" jdbcType="VARCHAR" property="configValue"/>
+        <result column="remarks" jdbcType="VARCHAR" property="remarks"/>
+        <result column="isCache" jdbcType="VARCHAR" property="iscache"/>
+        <result column="modify_date" jdbcType="TIMESTAMP" property="modifyDate"/>
+        <result column="create_date" jdbcType="TIMESTAMP" property="createDate"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        config_id, config_type, config_key, config_value, remarks, isCache, modify_date,
+        create_date
+    </sql>
+
+    <select id="configListByPage" parameterType="Map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_config_info
+        where 1=1
+        <if test="type != null">
+            AND config_type LIKE #{type,jdbcType=VARCHAR}
+        </if>
+        <if test="isCache != null">
+            AND isCache = #{isCache,jdbcType=VARCHAR}
+        </if>
+        <if test="key != null">
+            AND config_key LIKE #{key,jdbcType=VARCHAR}
+        </if>
+        <if test="keyWords != null">
+            AND config_value like #{keyWords,jdbcType=VARCHAR}
+        </if>
+    </select>
+
+    <select id="configListByPageCount" parameterType="Map" resultType="INTEGER">
+        select count(1) total
+        from sys_config_info
+        where 1=1
+        <if test="type != null">
+            AND config_type LIKE #{type,jdbcType=VARCHAR}
+        </if>
+        <if test="isCache != null">
+            AND isCache = #{isCache,jdbcType=VARCHAR}
+        </if>
+        <if test="key != null">
+            AND config_key LIKE #{key,jdbcType=VARCHAR}
+        </if>
+        <if test="keyWords != null">
+            AND config_value like #{keyWords,jdbcType=VARCHAR}
+        </if>
+    </select>
+
+    <select id="configListByTypeAndKey" parameterType="Map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_config_info
+        where 1=2
+        <if test="type != null and key !=null">
+            OR (
+            config_type=#{type,jdbcType=VARCHAR}
+            AND
+            config_key=#{key,jdbcType=VARCHAR}
+            )
+        </if>
+    </select>
+
+    <delete id="deleteByTypeAndKey" parameterType="java.lang.String">
+        delete from sys_config_info
+        where 1=2
+        <if test="type != null and key !=null">
+            OR (
+            config_type=#{type,jdbcType=VARCHAR}
+            AND
+            config_key=#{key,jdbcType=VARCHAR}
+            )
+        </if>
+    </delete>
+
+    <delete id="deleteByPrimaryKeys" parameterType="java.lang.String">
+        delete from sys_config_info
+        where config_id in
+        <foreach item="configId" collection="list" open="(" close=")" separator=",">
+            #{configId}
+        </foreach>
+
+    </delete>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_config_info
+        where config_id = #{configId,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectByPrimaryKeys" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_config_info
+        where config_id in
+        <foreach item="configId" collection="list" open="(" close=")" separator=",">
+            #{configId,jdbcType=VARCHAR}
+        </foreach>
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete from sys_config_info
+        where config_id = #{configId,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="com.java.butterfly.system.entity.SysConfigInfo">
+        insert into sys_config_info (config_id, config_type, config_key,
+        config_value, remarks, isCache,
+        modify_date, create_date)
+        values (#{configId,jdbcType=VARCHAR}, #{configType,jdbcType=VARCHAR}, #{configKey,jdbcType=VARCHAR},
+        #{configValue,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}, #{iscache,jdbcType=VARCHAR},
+        #{modifyDate,jdbcType=TIMESTAMP}, #{createDate,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.java.butterfly.system.entity.SysConfigInfo">
+        insert into sys_config_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="configId != null">
+                config_id,
+            </if>
+            <if test="configType != null">
+                config_type,
+            </if>
+            <if test="configKey != null">
+                config_key,
+            </if>
+            <if test="configValue != null">
+                config_value,
+            </if>
+            <if test="remarks != null">
+                remarks,
+            </if>
+            <if test="iscache != null">
+                isCache,
+            </if>
+            <if test="modifyDate != null">
+                modify_date,
+            </if>
+            <if test="createDate != null">
+                create_date,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="configId != null">
+                #{configId,jdbcType=VARCHAR},
+            </if>
+            <if test="configType != null">
+                #{configType,jdbcType=VARCHAR},
+            </if>
+            <if test="configKey != null">
+                #{configKey,jdbcType=VARCHAR},
+            </if>
+            <if test="configValue != null">
+                #{configValue,jdbcType=VARCHAR},
+            </if>
+            <if test="remarks != null">
+                #{remarks,jdbcType=VARCHAR},
+            </if>
+            <if test="iscache != null">
+                #{iscache,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyDate != null">
+                #{modifyDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createDate != null">
+                #{createDate,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.java.butterfly.system.entity.SysConfigInfo">
+        update sys_config_info
+        <set>
+            <if test="configType != null">
+                config_type = #{configType,jdbcType=VARCHAR},
+            </if>
+            <if test="configKey != null">
+                config_key = #{configKey,jdbcType=VARCHAR},
+            </if>
+            <if test="configValue != null">
+                config_value = #{configValue,jdbcType=VARCHAR},
+            </if>
+            <if test="remarks != null">
+                remarks = #{remarks,jdbcType=VARCHAR},
+            </if>
+            <if test="iscache != null">
+                isCache = #{iscache,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyDate != null">
+                modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createDate != null">
+                create_date = #{createDate,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where config_id = #{configId,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.java.butterfly.system.entity.SysConfigInfo">
+    update sys_config_info
+    set config_type = #{configType,jdbcType=VARCHAR},
+      config_key = #{configKey,jdbcType=VARCHAR},
+      config_value = #{configValue,jdbcType=VARCHAR},
+        remarks = #{remarks,jdbcType=VARCHAR},
+      isCache = #{iscache,jdbcType=VARCHAR},
+      modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      create_date = #{createDate,jdbcType=TIMESTAMP}
+    where config_id = #{configId,jdbcType=VARCHAR}
+  </update>
+</mapper>

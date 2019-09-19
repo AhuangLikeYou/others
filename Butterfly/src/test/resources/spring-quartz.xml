@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <description>
+        spring quartz调度
+    </description>
+
+    <!--&lt;!&ndash; 实例化bean &ndash;&gt;-->
+    <!--<bean id="netWorkConfigCacheServiceQuartz"-->
+    <!--class="com.billionsfinance.monitorsystem.monitor.service.impl.NetWorkCacheService"/>-->
+
+    <!--&lt;!&ndash; 配置MethodInvokingJobDetailFactoryBean &ndash;&gt;-->
+    <!--<bean id="refreshNetworkConfigCacheMethod"-->
+    <!--class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">-->
+    <!--<property name="targetObject" ref="netWorkConfigCacheServiceQuartz"/>-->
+    <!--<property name="targetMethod" value="refreshConfigCache"/>-->
+    <!--&lt;!&ndash;将并发设置为false&ndash;&gt;-->
+    <!--<property name="concurrent" value="false"/>-->
+    <!--</bean>-->
+    <!---->
+    <!--&lt;!&ndash; 配置定时表达式 &ndash;&gt;-->
+    <!--<bean id="refreshNetworkConfigCacheTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">-->
+    <!--<property name="jobDetail" ref="refreshNetworkConfigCacheMethod"/>-->
+    <!--&lt;!&ndash; 每分钟第30秒开始更新网络配置 &ndash;&gt;-->
+    <!--<property name="cronExpression" value="30 * * * * ?"/>-->
+    <!--</bean>-->
+    <!--<bean id="refreshNetworkUsageTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">-->
+    <!--<property name="jobDetail" ref="refreshNetworkUsageMethod"/>-->
+    <!--&lt;!&ndash; 每分钟开始时刷新zabbix数据缓存&ndash;&gt;-->
+    <!--<property name="cronExpression" value="0 0/1 * * * ?"/>-->
+    <!--</bean>-->
+
+    <!--&lt;!&ndash; 配置调度工厂 &ndash;&gt;-->
+    <!--<bean id="testSchedulerFactoryBean"-->
+    <!--class="org.springframework.scheduling.quartz.SchedulerFactoryBean">-->
+    <!--<property name="triggers">-->
+    <!--<list>-->
+    <!--<ref bean="refreshNetworkConfigCacheTrigger"/>-->
+    <!--</list>-->
+    <!--</property>-->
+    <!--</bean>-->
+
+</beans>

@@ -1,0 +1,33 @@
+{
+  "pages": [
+    "pages/line2/line2",
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/line/line"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "晴雨表",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#000",
+    "selectedColor": "#e24328",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "天气"
+      },
+      {
+        "pagePath": "pages/line2/line2",
+        "text": "个消埋点"
+      },
+      {
+        "pagePath": "pages/line/line",
+        "text": "各系统单量"
+      }
+    ]
+  }
+}

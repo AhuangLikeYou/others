@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.java.butterfly.system.dao.SysRoleResourcesMapper">
+    <resultMap id="BaseResultMap" type="com.java.butterfly.system.entity.SysRoleResources">
+        <result column="role_ID" jdbcType="VARCHAR" property="roleId"/>
+        <result column="resource_ID" jdbcType="VARCHAR" property="resourceId"/>
+        <result column="CREATE_DATE" jdbcType="TIMESTAMP" property="createDate"/>
+    </resultMap>
+
+
+    <delete id="deleteConnect">
+        delete from sys_role_resources
+        where 1=2
+        <if test="roleId != null and roleId!='' and  resourcesId!=null ">
+            OR (
+            role_id=#{roleId,jdbcType=VARCHAR}
+            AND resource_ID in
+            <foreach item="resourceId" collection="resourcesId" open="(" close=")" separator=",">
+                #{resourceId}
+            </foreach>
+            )
+        </if>
+    </delete>
+
+
+    <insert id="insert" parameterType="com.java.butterfly.system.entity.SysRoleResources">
+        insert into sys_role_resources (role_ID, resource_ID, CREATE_DATE
+        )
+        values (#{roleId,jdbcType=VARCHAR}, #{resourceId,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.java.butterfly.system.entity.SysRoleResources">
+        insert into sys_role_resources
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="roleId != null">
+                role_ID,
+            </if>
+            <if test="resourceId != null">
+                resource_ID,
+            </if>
+            <if test="createDate != null">
+                CREATE_DATE,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="roleId != null">
+                #{roleId,jdbcType=VARCHAR},
+            </if>
+            <if test="resourceId != null">
+                #{resourceId,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null">
+                #{createDate,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+</mapper>

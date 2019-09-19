@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.java.butterfly.system.dao.SysRoleInfoMapper">
+    <resultMap id="BaseResultMap" type="com.java.butterfly.system.entity.SysRoleInfo">
+        <id column="ROLE_ID" jdbcType="VARCHAR" property="roleId"/>
+        <result column="ROLE_NAME" jdbcType="VARCHAR" property="roleName"/>
+        <result column="STATUS" jdbcType="VARCHAR" property="status"/>
+        <result column="CREATE_DATE" jdbcType="TIMESTAMP" property="createDate"/>
+        <result column="MODIFY_DATE" jdbcType="TIMESTAMP" property="modifyDate"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    ROLE_ID, ROLE_NAME, STATUS, CREATE_DATE, MODIFY_DATE
+  </sql>
+
+    <select id="getRoleListByPage" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_role_info
+        <if test="keyWords != null">
+            WHERE ROLE_NAME like #{keyWords,jdbcType=VARCHAR}
+        </if>
+    </select>
+
+    <select id="getAllRolesByUserId" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT SRI.ROLE_ID,
+        SRI.ROLE_NAME,
+        SRI.STATUS,
+        SRI.CREATE_DATE,
+        SRI.MODIFY_DATE
+        FROM SYS_USER_ROLE SUR
+        INNER JOIN SYS_ROLE_INFO SRI ON SUR.ROLE_ID = SRI.ROLE_ID
+        WHERE 1=2
+        <if test="userId != null">
+            OR SUR.USER_ID
+            WHERE ROLE_NAME like #{keyWords,jdbcType=VARCHAR}
+        </if>
+    </select>
+
+    <select id="getRoleListByPageCount" parameterType="java.lang.String" resultType="INTEGER">
+        select count(1) total
+        from sys_role_info
+        <if test="keyWords != null">
+            WHERE ROLE_NAME like #{keyWords,jdbcType=VARCHAR}
+        </if>
+    </select>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_role_info
+        where ROLE_ID = #{roleId,jdbcType=VARCHAR}
+    </select>
+
+    <delete id="deleteByPrimaryKeys" parameterType="java.util.List">
+        delete from sys_role_info
+        where ROLE_ID in
+        <foreach item="roleId" collection="list" open="(" close=")" separator=",">
+            #{roleId}
+        </foreach>
+    </delete>
+
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_role_info
+    where ROLE_ID = #{roleId,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.java.butterfly.system.entity.SysRoleInfo">
+    insert into sys_role_info (ROLE_ID, ROLE_NAME, STATUS, 
+      CREATE_DATE, MODIFY_DATE)
+    values (#{roleId,jdbcType=VARCHAR}, #{roleName,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{modifyDate,jdbcType=TIMESTAMP})
+  </insert>
+    <insert id="insertSelective" parameterType="com.java.butterfly.system.entity.SysRoleInfo">
+        insert into sys_role_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="roleId != null">
+                ROLE_ID,
+            </if>
+            <if test="roleName != null">
+                ROLE_NAME,
+            </if>
+            <if test="status != null">
+                STATUS,
+            </if>
+            <if test="createDate != null">
+                CREATE_DATE,
+            </if>
+            <if test="modifyDate != null">
+                MODIFY_DATE,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="roleId != null">
+                #{roleId,jdbcType=VARCHAR},
+            </if>
+            <if test="roleName != null">
+                #{roleName,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null">
+                #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyDate != null">
+                #{modifyDate,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.java.butterfly.system.entity.SysRoleInfo">
+        update sys_role_info
+        <set>
+            <if test="roleName != null">
+                ROLE_NAME = #{roleName,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                STATUS = #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null">
+                CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyDate != null">
+                MODIFY_DATE = #{modifyDate,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where ROLE_ID = #{roleId,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.java.butterfly.system.entity.SysRoleInfo">
+    update sys_role_info
+    set ROLE_NAME = #{roleName,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      MODIFY_DATE = #{modifyDate,jdbcType=TIMESTAMP}
+        where ROLE_ID = #{roleId,jdbcType=VARCHAR}
+  </update>
+</mapper>

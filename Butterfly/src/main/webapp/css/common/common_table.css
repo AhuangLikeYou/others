@@ -1,0 +1,15 @@
+/* bootstrap table 通用样式 */
+.searchArea{
+	height:80%;
+	background-color: #EEEEEE;
+}
+
+.dataArea{
+	height:100%;
+	background-color: #FFFFFF;
+}
+
+.dataTabel >thead>tr>th{
+	background-color: #EEEEEE;
+}
+

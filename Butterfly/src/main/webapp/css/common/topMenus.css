@@ -1,0 +1,135 @@
+/*update bootstrap navbar*/
+.navbar-nav > li > a {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.navbar-brand {
+    height: 30px;
+    padding-top: 10px;
+}
+
+.navbar {
+    min-height: 30px;
+}
+
+.navbar-toggle {
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+/*https://work.smarchal.com/twbscolor/3.3.6/css/337ab6337ab6f7f9f50000001*/
+/*自定义navbar颜色风格*/
+/*-- start --*/
+.navbar-default {
+    background-color: #337ab6;
+    border-color: #337ab6;
+}
+
+.navbar-default .navbar-brand {
+    color: #f7f9f5;
+}
+
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+    color: #000000;
+}
+
+.navbar-default .navbar-text {
+    color: #f7f9f5;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #f7f9f5;
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+    color: #000000;
+}
+
+.navbar-default .navbar-nav > li > .dropdown-menu {
+    background-color: #337ab6;
+}
+
+.navbar-default .navbar-nav > li > .dropdown-menu > li > a {
+    color: #f7f9f5;
+}
+
+.navbar-default .navbar-nav > li > .dropdown-menu > li > a:hover,
+.navbar-default .navbar-nav > li > .dropdown-menu > li > a:focus {
+    color: #000000;
+    background-color: #337ab6;
+}
+
+.navbar-default .navbar-nav > li > .dropdown-menu > li.divider {
+    background-color: #337ab6;
+}
+
+.navbar-default .navbar-nav .open .dropdown-menu > .active > a,
+.navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
+.navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #000000;
+    background-color: #337ab6;
+}
+
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+    color: #000000;
+    background-color: #337ab6;
+}
+
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+    color: #000000;
+    background-color: #337ab6;
+}
+
+.navbar-default .navbar-toggle {
+    border-color: #337ab6;
+}
+
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+    background-color: #337ab6;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #f7f9f5;
+}
+
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+    border-color: #f7f9f5;
+}
+
+.navbar-default .navbar-link {
+    color: #f7f9f5;
+}
+
+.navbar-default .navbar-link:hover {
+    color: #000000;
+}
+
+@media (max-width: 767px) {
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+        color: #f7f9f5;
+    }
+
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+        color: #000000;
+    }
+
+    .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
+    .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
+    .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+        color: #000000;
+        background-color: #337ab6;
+    }
+}
+
+/*自定义navbar颜色风格*/
+/*-- end --*/

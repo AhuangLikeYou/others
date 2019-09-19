@@ -1,0 +1,5 @@
+/**index.wxss**/
+#mychart-dom-line {
+  width: 100%;
+  height: 1000rpx;
+}

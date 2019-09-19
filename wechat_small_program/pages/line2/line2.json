@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "ec-canvas": "/ec-canvas/ec-canvas"
+  },
+  "navigationBarTitleText": "个消埋点走势图"
+}

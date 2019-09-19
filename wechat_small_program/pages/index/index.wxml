@@ -1,0 +1,22 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">  </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <view class='usermotto'>
+    <text class='user-motto'>您所在位置：{{city}}</text>
+  </view>
+  <block wx:for="{{futureWeather}}">  
+    <view style="border:1px solid #ccc; margin:5px;width:80%">  
+        <view>{{item.date}}</view>  
+        <view>{{item.temperature}}</view>  
+        <view>{{item.weather}}</view>  
+        <view>{{item.wind}}</view>  
+    </view>  
+</block>  
+  <!-- <button type="primary" style='float:left'> 搜索 </button> -->
+</view>

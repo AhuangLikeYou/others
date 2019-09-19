@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 查询用户资源 -->
+<mapper namespace="com.java.butterfly.system.dao.SysUserResourcesMapper">
+    <resultMap id="BaseResultMap" type="com.java.butterfly.system.entity.SysUserResources">
+        <result column="ROLE_ID" jdbcType="VARCHAR" property="roleId"/>
+        <result column="RESOURCE_CODE" jdbcType="VARCHAR" property="resourceCode"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+       ROLE_ID,
+       RESOURCE_CODE
+  </sql>
+
+    <!--   查询用户资源-->
+    <select id="loadUserResources" parameterType="com.java.butterfly.system.entity.SysUserResources"
+            resultMap="BaseResultMap">
+  	 SELECT SRR.ROLE_ID, SRI.RESOURCE_CODE
+            FROM SYS_USER_ROLE SUR
+                 LEFT JOIN SYS_ROLE_RESOURCES SRR ON SUR.ROLE_ID = SRR.ROLE_ID
+                 LEFT JOIN SYS_RESOURCE_INFO SRI ON SRR.RESOURCE_ID = SRI.RESOURCE_ID
+                 WHERE SUR.USER_ID = #{userId,jdbcType=DECIMAL}
+  </select>
+
+</mapper>

@@ -1,0 +1,12 @@
+2019-07-24 00:00:03.290 [http-nio-8687-exec-134-EventThread] INFO  org.apache.zookeeper.ClientCnxn - EventThread shut down
+访问接口:/animals/dog id:2170fb2ed2da84e7c67182845580b0c5  查询耗时：268ms  是否命中：是
+访问接口:/animals/dog id:295fe299a04ec195335c72839922532d  查询耗时：268ms  是否命中：是
+2019-07-24 00:00:03.290 [http-nio-8687-exec-134-EventThread] INFO  org.apache.zookeeper.ClientCnxn - EventThread shut down
+访问接口:/animals/dog id:8bba20376cbef97806ebd5028099f727  查询耗时：268ms  是否命中：否
+访问接口:/animals/dog id:0d61505a4ab0e5900c1db11aefcdf24d  查询耗时：268ms  是否命中：是
+2019-07-24 00:00:03.290 [http-nio-8687-exec-134-EventThread] INFO  org.apache.zookeeper.ClientCnxn - EventThread shut down
+访问接口:/animals/dog id:c1bacc1968d6f471e3987bdf62a5a078  查询耗时：268ms  是否命中：否
+访问接口:/animals/dog id:460ce7a64ff94eb903af2947faa64488  查询耗时：268ms  是否命中：是
+访问接口:/animals/dog id:43349c01eca35da1467839a72a05a326  查询耗时：268ms  是否命中：是
+访问接口:/animals/dog id:1e46f790d01c1f48079b3d945934bfb3  查询耗时：268ms  是否命中：是
+访问接口:/animals/dog id:c3a226461914a1bb54fc53521f37e817  查询耗时：268ms  是否命中：否

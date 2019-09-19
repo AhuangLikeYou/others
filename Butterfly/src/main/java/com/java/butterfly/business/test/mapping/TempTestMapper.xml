@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.java.butterfly.business.test.dao.TempTestMapper">
+    <resultMap id="BaseResultMap" type="com.java.butterfly.business.test.entity.TempTest">
+        <id column="TEST_ID" jdbcType="VARCHAR" property="testId"/>
+        <result column="TEST_NAME" jdbcType="VARCHAR" property="testName"/>
+        <result column="TEST_AGE" jdbcType="DECIMAL" property="testAge"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        TEST_ID, TEST_NAME, TEST_AGE
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from TEMP_TEST
+        where TEST_ID = #{testId,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectAllDataCount" parameterType="Map" resultType="INTEGER">
+        select count(1) total
+        from TEMP_TEST
+    </select>
+
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete from TEMP_TEST
+        where TEST_ID = #{testId,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="com.java.butterfly.business.test.entity.TempTest">
+        insert into TEMP_TEST (TEST_ID, TEST_NAME, TEST_AGE
+        )
+        values (#{testId,jdbcType=VARCHAR}, #{testName,jdbcType=VARCHAR}, #{testAge,jdbcType=DECIMAL}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.java.butterfly.business.test.entity.TempTest">
+        insert into TEMP_TEST
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="testId != null">
+                TEST_ID,
+            </if>
+            <if test="testName != null">
+                TEST_NAME,
+            </if>
+            <if test="testAge != null">
+                TEST_AGE,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="testId != null">
+                #{testId,jdbcType=VARCHAR},
+            </if>
+            <if test="testName != null">
+                #{testName,jdbcType=VARCHAR},
+            </if>
+            <if test="testAge != null">
+                #{testAge,jdbcType=DECIMAL},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.java.butterfly.business.test.entity.TempTest">
+        update TEMP_TEST
+        <set>
+            <if test="testName != null">
+                TEST_NAME = #{testName,jdbcType=VARCHAR},
+            </if>
+            <if test="testAge != null">
+                TEST_AGE = #{testAge,jdbcType=DECIMAL},
+            </if>
+        </set>
+        where TEST_ID = #{testId,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.java.butterfly.business.test.entity.TempTest">
+        update TEMP_TEST
+        set TEST_NAME = #{testName,jdbcType=VARCHAR},
+        TEST_AGE = #{testAge,jdbcType=DECIMAL}
+        where TEST_ID = #{testId,jdbcType=VARCHAR}
+    </update>
+</mapper>

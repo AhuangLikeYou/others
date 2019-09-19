@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration   
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"  
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--<settings>-->
+    <!--&lt;!&ndash; 打印查询语句，交给Druid &ndash;&gt;-->
+    <!--<setting name="logImpl" value="STDOUT_LOGGING" />-->
+    <!--</settings>-->
+
+    <plugins>  
+<!-- 	 	声明一个分页拦截器   -->
+	 	<plugin interceptor="com.java.butterfly.common.interceptors.PageInterceptor">  
+<!-- 		  	给拦截器传入一个参数（该参数在拦截器中判断拦截到的sql是不是需要分页的使用）   -->
+            <property name="sqlIdByPageRegex" value=".+ByPage$"/>
+            <!--<property name="dbType" value="oracle" />-->
+            <property name="dbType" value="mysql"/>
+	 	</plugin>  
+	</plugins>  
+	
+</configuration>

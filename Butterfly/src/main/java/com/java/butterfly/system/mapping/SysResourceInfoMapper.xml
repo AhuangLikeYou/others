@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.java.butterfly.system.dao.SysResourceInfoMapper">
+    <resultMap id="BaseResultMap" type="com.java.butterfly.system.entity.SysResourceInfo">
+        <id column="RESOURCE_ID" jdbcType="VARCHAR" property="resourceId"/>
+        <result column="RESOURCE_CODE" jdbcType="VARCHAR" property="resourceCode"/>
+        <result column="RESOURCE_NAME" jdbcType="VARCHAR" property="resourceName"/>
+        <result column="RESOURCE_PATH" jdbcType="VARCHAR" property="resourcePath"/>
+        <result column="Parent_Id" jdbcType="VARCHAR" property="parentId"/>
+        <result column="STATUS" jdbcType="VARCHAR" property="status"/>
+        <result column="CREATE_DATE" jdbcType="TIMESTAMP" property="createDate"/>
+        <result column="MODIFY_DATE" jdbcType="TIMESTAMP" property="modifyDate"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        RESOURCE_ID, RESOURCE_CODE, RESOURCE_NAME, RESOURCE_PATH, Parent_Id, STATUS, CREATE_DATE,
+        MODIFY_DATE
+    </sql>
+
+
+    <select id="selectByExample" parameterType="Map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_resource_info
+        WHERE 1=1
+        <if test="resourceId != null and resourceId !=''">
+            AND RESOURCE_ID=#{resourceId,jdbcType=VARCHAR}
+        </if>
+        <if test="resourceCode != null and resourceCode !=''">
+            AND RESOURCE_CODE=#{resourceCode,jdbcType=VARCHAR}
+        </if>
+        <if test="resourceName != null and resourceName !=''">
+            AND RESOURCE_NAME=#{resourceName,jdbcType=VARCHAR}
+        </if>
+        <if test="resourcePath != null and resourcePath !=''">
+            AND RESOURCE_PATH=#{resourcePath,jdbcType=VARCHAR}
+        </if>
+        <if test="parentId != null and parentId !=''">
+            AND Parent_Id=#{parentId,jdbcType=VARCHAR}
+        </if>
+        <if test="status != null and status !=''">
+            AND STATUS=#{resostatusurceId,jdbcType=VARCHAR}
+        </if>
+    </select>
+
+    <select id="getListByPage" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_resource_info
+        <if test="keyWords != null">
+            WHERE RESOURCE_CODE like #{keyWords,jdbcType=VARCHAR}
+            OR RESOURCE_NAME like #{keyWords,jdbcType=VARCHAR}
+            OR RESOURCE_PATH like #{keyWords,jdbcType=VARCHAR}
+        </if>
+    </select>
+
+
+    <select id="getListByPageCount" parameterType="java.lang.String" resultType="INTEGER">
+        select count(1) total
+        from sys_resource_info
+        <if test="keyWords != null">
+            WHERE RESOURCE_CODE like #{keyWords,jdbcType=VARCHAR}
+            OR RESOURCE_NAME like #{keyWords,jdbcType=VARCHAR}
+            OR RESOURCE_PATH like #{keyWords,jdbcType=VARCHAR}
+        </if>
+    </select>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_resource_info
+        where RESOURCE_ID = #{resourceId,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKeys" parameterType="java.util.List">
+        delete from sys_resource_info
+        where RESOURCE_ID in
+        <foreach item="resourceId" collection="list" open="(" close=")" separator=",">
+            #{resourceId}
+        </foreach>
+    </delete>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete from sys_resource_info
+        where RESOURCE_ID = #{resourceId,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="com.java.butterfly.system.entity.SysResourceInfo">
+        insert into sys_resource_info (RESOURCE_ID, RESOURCE_CODE, RESOURCE_NAME,
+        RESOURCE_PATH, Parent_Id, STATUS,
+        CREATE_DATE, MODIFY_DATE)
+        values (#{resourceId,jdbcType=VARCHAR}, #{resourceCode,jdbcType=VARCHAR}, #{resourceName,jdbcType=VARCHAR},
+        #{resourcePath,jdbcType=VARCHAR}, #{parentId,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR},
+        #{createDate,jdbcType=TIMESTAMP}, #{modifyDate,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.java.butterfly.system.entity.SysResourceInfo">
+        insert into sys_resource_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="resourceId != null">
+                RESOURCE_ID,
+            </if>
+            <if test="resourceCode != null">
+                RESOURCE_CODE,
+            </if>
+            <if test="resourceName != null">
+                RESOURCE_NAME,
+            </if>
+            <if test="resourcePath != null">
+                RESOURCE_PATH,
+            </if>
+            <if test="parentId != null">
+                Parent_Id,
+            </if>
+            <if test="status != null">
+                STATUS,
+            </if>
+            <if test="createDate != null">
+                CREATE_DATE,
+            </if>
+            <if test="modifyDate != null">
+                MODIFY_DATE,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="resourceId != null">
+                #{resourceId,jdbcType=VARCHAR},
+            </if>
+            <if test="resourceCode != null">
+                #{resourceCode,jdbcType=VARCHAR},
+            </if>
+            <if test="resourceName != null">
+                #{resourceName,jdbcType=VARCHAR},
+            </if>
+            <if test="resourcePath != null">
+                #{resourcePath,jdbcType=VARCHAR},
+            </if>
+            <if test="parentId != null">
+                #{parentId,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null">
+                #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyDate != null">
+                #{modifyDate,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.java.butterfly.system.entity.SysResourceInfo">
+        update sys_resource_info
+        <set>
+            <if test="resourceCode != null">
+                RESOURCE_CODE = #{resourceCode,jdbcType=VARCHAR},
+            </if>
+            <if test="resourceName != null">
+                RESOURCE_NAME = #{resourceName,jdbcType=VARCHAR},
+            </if>
+            <if test="resourcePath != null">
+                RESOURCE_PATH = #{resourcePath,jdbcType=VARCHAR},
+            </if>
+            <if test="parentId != null">
+                Parent_Id = #{parentId,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                STATUS = #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null">
+                CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyDate != null">
+                MODIFY_DATE = #{modifyDate,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where RESOURCE_ID = #{resourceId,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.java.butterfly.system.entity.SysResourceInfo">
+    update sys_resource_info
+    set RESOURCE_CODE = #{resourceCode,jdbcType=VARCHAR},
+      RESOURCE_NAME = #{resourceName,jdbcType=VARCHAR},
+        RESOURCE_PATH = #{resourcePath,jdbcType=VARCHAR},
+      Parent_Id = #{parentId,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      MODIFY_DATE = #{modifyDate,jdbcType=TIMESTAMP}
+    where RESOURCE_ID = #{resourceId,jdbcType=VARCHAR}
+  </update>
+</mapper>

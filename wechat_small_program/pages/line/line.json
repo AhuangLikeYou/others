@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "ec-canvas": "/ec-canvas/ec-canvas"
+  },
+  "navigationBarTitleText": "各业务系统单量走势"
+  
+}
